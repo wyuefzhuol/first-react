@@ -8,19 +8,19 @@ class Counter extends React.Component {
         };
     }
 
-    makeZero = () => {
+    handleMakeZero = () => {
         this.setState((prevState) => ({
             value: 0
         }));
     }
 
-    onIncrease = () => {
+    handleIncrease = () => {
         this.setState((prevState) => ({
             value: prevState.value + 1
         }));
     }
 
-    onDecrease = () => {
+    handleDecrease = () => {
         if (this.state.value > 0) {
             this.setState((prevState) => ({
                 value: prevState.value - 1
@@ -28,7 +28,7 @@ class Counter extends React.Component {
         }
     }
 
-    onIncreaseTen = () => {
+    handleIncreaseTen = () => {
         this.setState((prevState) => ({
             value: prevState.value + 10
         }));
@@ -36,11 +36,11 @@ class Counter extends React.Component {
 
     render() {
         return (<div>
-            <button onClick={this.makeZero}>归零</button>
-            <button onClick={this.onDecrease}>-</button>
+            <button onClick={this.handleMakeZero}>归零</button>
+            <button onClick={this.handleDecrease}>-</button>
             <mark>{this.state.value}</mark>
-            <button onClick={this.onIncrease}>+</button>
-            <button onClick={this.onIncreaseTen}>+10</button>
+            <button onClick={this.handleIncrease}>+</button>
+            <button onClick={this.handleIncreaseTen}>+10</button>
         </div>)
     }
 }
