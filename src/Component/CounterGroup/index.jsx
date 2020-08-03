@@ -5,7 +5,8 @@ class CounterGroup extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            size: 0
+            size: 0,
+            totalNumber: 0
         };
     }
 
@@ -16,6 +17,12 @@ class CounterGroup extends Component {
         })
     }
 
+    handleIncrease = () => {
+        this.setState((prevState) => ({
+            totalNumber: prevState.totalNumber + 1
+        }));
+    }
+
     render() {
         const initArray = [...Array(this.state.size).keys()];
 
@@ -23,8 +30,12 @@ class CounterGroup extends Component {
             <label>
                 Group Size:
                 <input onBlur={this.handleResize} defaultValue="0" />
+            </label><br />
+            <label>
+                Total Number:
+                {this.state.totalNumber}
             </label>
-            { initArray.map(key => <Counter key={key}/>) }
+            { initArray.map(key => <Counter handleIncrease={this.handleIncrease} key={key}/>) }
         </div>);
     }
 }
