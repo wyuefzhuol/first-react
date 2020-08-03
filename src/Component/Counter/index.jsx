@@ -26,6 +26,7 @@ class Counter extends React.Component {
             this.setState((prevState) => ({
                 value: prevState.value - 1
             }));
+            this.props.handleDecrease();
         }
     }
 
