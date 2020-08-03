@@ -5,19 +5,19 @@ class Counter extends React.Component {
         super(props);
         this.state = {
             value: 0,
-            groupSize: 0
+            //groupSize: 0
         };
     }
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.groupSize !== state.groupSize) {
-            return {
-                value: 0,
-                groupSize: props.groupSize
-            };
-        }
-        return null;
-    }
+    // static getDerivedStateFromProps(props, state) {
+    //     if (props.groupSize !== state.groupSize) {
+    //         return {
+    //             value: 0,
+    //             groupSize: props.groupSize
+    //         };
+    //     }
+    //     return null;
+    // }
 
     componentDidMount(){
         this.props.onRef(this)

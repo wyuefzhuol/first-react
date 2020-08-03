@@ -8,17 +8,24 @@ class CounterGroup extends Component {
             size: 0,
             totalNumber: 0
         };
+        this.child=[];
     }
 
     onRef = (ref) => {
-        this.child = ref
+        this.child.push(ref);
     }
 
     handleResize = (event) => {
-        var resize = event.target.value.replace(/[^0-9]/g, "");
+        var resize = event.target.value.replace(/[^0-9]/g, "") ? parseInt(event.target.value.replace(/[^0-9]/g, "")) : 0;
+        if (resize < this.state.size) {
+            for (var i = this.state.size-1; i >= resize; i --) {
+                this.child[i].handleMakeZero();
+                this.child.pop();
+            }
+        }
         this.setState({
-            size: resize ? parseInt(resize) : 0,
-            totalNumber: 0
+            size: resize,
+            //totalNumber: 0
         })
     }
 
