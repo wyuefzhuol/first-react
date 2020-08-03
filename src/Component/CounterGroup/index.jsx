@@ -10,10 +10,15 @@ class CounterGroup extends Component {
         };
     }
 
+    onRef = (ref) => {
+        this.child = ref
+    }
+
     handleResize = (event) => {
         var resize = event.target.value.replace(/[^0-9]/g, "");
         this.setState({
-            size: resize ? parseInt(resize) : 0
+            size: resize ? parseInt(resize) : 0,
+            totalNumber: 0
         })
     }
 
@@ -35,6 +40,12 @@ class CounterGroup extends Component {
         }));
     }
 
+    handleMakeZero = (minuend) => {
+        this.setState((prevState) => ({
+            totalNumber: prevState.totalNumber - minuend
+        }));
+    }
+
     render() {
         const initArray = [...Array(this.state.size).keys()];
 
@@ -47,7 +58,7 @@ class CounterGroup extends Component {
                 Total Number:
                 {this.state.totalNumber}
             </label>
-            { initArray.map(key => <Counter handleIncrease={this.handleIncrease} handleDecrease={this.handleDecrease} handleIncreaseTen={this.handleIncreaseTen} key={key}/>) }
+            { initArray.map(key => <Counter groupSize={this.state.size} onRef={this.onRef} handleIncrease={this.handleIncrease} handleDecrease={this.handleDecrease} handleIncreaseTen={this.handleIncreaseTen} handleMakeZero={this.handleMakeZero} key={key}/>) }
         </div>);
     }
 }
